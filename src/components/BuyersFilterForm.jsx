@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Formik } from "formik";
 
 export default function BuyersFilterForm({ handleFilter }) {
   const [filterQuery, setFilterQuery] = useState("");

@@ -10,9 +10,6 @@ export default function Buyers() {
       e.name.toLowerCase().includes(filterQuery.toLowerCase())
     );
     setData(filtered);
-    console.log(data);
-    // console.log(buyers);
-    console.log(filterQuery);
   };
   return (
     <div className="page buyers">
