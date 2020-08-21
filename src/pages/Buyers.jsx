@@ -16,7 +16,6 @@ export default function Buyers() {
   const setItemsOnPage = (count, start = 0) => {
     const _data = buyers.slice(start, count);
     setData(_data);
-    console.log(perPage);
   };
 
   const handleFilter = (filterQuery) => {
