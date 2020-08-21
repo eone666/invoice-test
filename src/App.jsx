@@ -4,7 +4,6 @@ import PrivateRoute from "./PrivateRoute";
 import Login from "./pages/Login";
 import { AuthContext } from "./context/auth";
 import "./App.scss";
-import Sidebar from "./components/Sidebar";
 import Main from "./pages/Main";
 
 function App() {

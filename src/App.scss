@@ -1,6 +1,11 @@
 body {
   background-color: #333;
   font-family: "Overpass Mono", monospace;
+  color: #fff;
+}
+
+img {
+  max-width: 100%;
 }
 
 .page {
@@ -18,15 +23,26 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  flex-direction: column;
+  box-sizing: border-box;
 }
 
 .sidebar {
-  border-right: 5px solid #fff;
-  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  border-right: 5px solid #666;
+  padding: 40px 0;
   background: #333;
 }
 
+.copyright {
+  padding: 0 10px;
+  text-align: center;
+}
+
 .nav {
+  flex: 1;
   &__list {
     list-style: none;
     padding: 0;
@@ -65,6 +81,9 @@ body {
     outline: none;
     background: #222;
   }
+  &:disabled {
+    background: #555;
+  }
 }
 
 .input {
@@ -89,7 +108,39 @@ body {
 .errors {
   margin-top: 5px;
   &__item {
-    min-height: 20px;
     color: #ef5350;
   }
+}
+
+.user-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #222;
+  justify-content: center;
+  &__avatar {
+    width: 100px;
+  }
+  &__item {
+    margin-bottom: 5px;
+  }
+  &__logout-link {
+    color: #666;
+    text-decoration: none;
+    &:hover {
+      color: #ffffff;
+    }
+  }
+}
+
+.terminal-form {
+  &__row {
+    margin-bottom: 10px;
+  }
+}
+
+table {
+  width: 100%;
 }
