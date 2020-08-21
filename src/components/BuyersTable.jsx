@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function BuyersTable({ data }) {
+export default function BuyersTable({ data, sortBy }) {
   return (
     <div className="table-wrapper">
       <table>
@@ -9,9 +9,37 @@ export default function BuyersTable({ data }) {
           <tr>
             <th>Id</th>
             <th>Name</th>
-            <th>Average check</th>
-            <th>Number of purchases</th>
-            <th>Total revenues</th>
+            <th>
+              Average check{" "}
+              <button
+                className="sort"
+                onClick={() => {
+                  sortBy("averageCheck");
+                }}
+              >
+                <i className="fas fa-sort"></i>
+              </button>
+            </th>
+            <th>
+              Number of purchases{" "}
+              <button
+                onClick={() => {
+                  sortBy("numberOfPurchases");
+                }}
+              >
+                <i className="fas fa-sort"></i>
+              </button>
+            </th>
+            <th>
+              Total revenues{" "}
+              <button
+                onClick={() => {
+                  sortBy("totalRevenues");
+                }}
+              >
+                <i className="fas fa-sort"></i>
+              </button>
+            </th>
           </tr>
         </thead>
         <tbody>
