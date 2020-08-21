@@ -204,7 +204,6 @@ p {
 }
 
 table {
-  width: 100%;
   padding: 0;
   margin: 0;
   table-layout: fixed;
@@ -217,9 +216,6 @@ table {
       text-align: left;
     }
   }
-  @media (max-width: 600px) {
-    width: auto;
-  }
 }
 
 .table-wrapper {
@@ -227,7 +223,7 @@ table {
   margin: 0;
   white-space: nowrap;
   position: relative;
-  max-width: 100%;
+  max-width: calc(100vw - 230px);
   width: 100%;
   overflow-x: auto;
   @media (max-width: 600px) {
