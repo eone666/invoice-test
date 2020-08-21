@@ -126,6 +126,31 @@ p {
   width: 320px;
 }
 
+.select {
+  background: #444;
+  border: none;
+  padding: 10px 20px;
+  color: #fff;
+  font-size: 20px;
+  width: 100%;
+  transition: all 0.3s ease;
+  font-family: "Overpass Mono", monospace;
+  &:hover {
+    background: #222;
+  }
+  &:focus {
+    outline: none;
+    background: #222;
+  }
+  &:disabled {
+    background: #555;
+  }
+}
+
+.items-on-page {
+  margin-bottom: 20px;
+}
+
 .button {
   background: #444;
   border: none;

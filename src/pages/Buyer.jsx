@@ -5,7 +5,7 @@ import PageNotFound from "./PageNotFound";
 
 export default function Buyer() {
   const buyerId = useParams();
-  const buyer = buyers[buyerId.buyerId];
+  const buyer = buyers.find((e) => String(e.id) === buyerId.buyerId);
   if (!buyer) {
     return <PageNotFound />;
   }
