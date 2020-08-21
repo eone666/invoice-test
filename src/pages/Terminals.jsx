@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import TerminalForm from "../components/TerminalForm";
 import TerminalTable from "../components/TerminalTable";
-import nextId from "react-id-generator";
 
 export default function Terminals() {
   if (!localStorage.getItem("terminals")) {
@@ -26,7 +25,7 @@ export default function Terminals() {
 
   const submitHandler = (values, { setSubmitting, resetForm }) => {
     const joined = data.concat({
-      id: nextId(getRandomString(5)),
+      id: getRandomString(8),
       name: values.name,
       description: values.description,
     });

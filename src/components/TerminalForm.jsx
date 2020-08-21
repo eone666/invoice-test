@@ -11,7 +11,7 @@ const terminalSchema = Yup.object().shape({
 
 export default function TerminalForm({ submitHandler }) {
   return (
-    <div className="terninal-form">
+    <div className="terminal-form">
       <Formik
         initialValues={{
           name: "",

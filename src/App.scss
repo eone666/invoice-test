@@ -8,14 +8,60 @@ img {
   max-width: 100%;
 }
 
+a {
+  color: #ffffff;
+}
+
+h1,
+h2 {
+  @media (max-width: 600px) {
+    text-align: center;
+  }
+}
+
+p {
+  @media (max-width: 600px) {
+    text-align: justify;
+  }
+}
+
 .page {
-  padding: 40px;
+  padding: 20px;
+}
+
+.page.not-found {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-height: 100vh;
+  flex-direction: column;
+  h1 {
+    font-size: 200px;
+    text-align: center;
+  }
+  h2 {
+    font-size: 40px;
+    text-align: center;
+  }
+  h1,
+  h2 {
+    padding: 0;
+    margin: 0;
+  }
+  a {
+    font-size: 30px;
+    margin-top: 40px;
+  }
 }
 
 .root-page {
   display: grid;
   grid-template-columns: 240px 1fr;
   min-height: 100vh;
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .login.page {
@@ -33,13 +79,28 @@ img {
   align-items: stretch;
   justify-content: space-between;
   border-right: 5px solid #666;
-  padding: 40px 0;
+  padding: 20px 0;
   background: #333;
+  @media (max-width: 600px) {
+    border-bottom: 1px solid #222;
+    border-right: none;
+  }
 }
 
 .copyright {
   padding: 0 10px;
   text-align: center;
+  @media (max-width: 600px) {
+    display: none;
+  }
+  &_mobile {
+    display: none;
+    padding: 20px;
+    text-align: center;
+    @media (max-width: 600px) {
+      display: block;
+    }
+  }
 }
 
 .nav {
@@ -136,7 +197,7 @@ img {
 }
 
 .terminal-form {
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   &__row {
     margin-bottom: 10px;
   }
@@ -144,4 +205,36 @@ img {
 
 table {
   width: 100%;
+  padding: 0;
+  margin: 0;
+  table-layout: fixed;
+  position: relative;
+  white-space: nowrap;
+  thead {
+    max-width: 100%;
+    font-size: 18px;
+    th {
+      text-align: left;
+    }
+  }
+  @media (max-width: 600px) {
+    width: auto;
+  }
+}
+
+.table-wrapper {
+  padding: 0;
+  margin: 0;
+  white-space: nowrap;
+  position: relative;
+  max-width: 100%;
+  width: 100%;
+  overflow-x: auto;
+  @media (max-width: 600px) {
+    max-width: calc(100vw - 40px);
+  }
+}
+
+.buyers-filter {
+  margin-bottom: 20px;
 }
