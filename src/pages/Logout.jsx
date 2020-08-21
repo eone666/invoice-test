@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Redirect } from "react-router-dom";
+import { useAuth } from "../context/auth";
 
 export default function Logout() {
-  localStorage.removeItem("user");
+  const { setUser } = useAuth();
+  useEffect(() => {
+    setUser(null);
+  });
   return <Redirect to="/login"></Redirect>;
 }

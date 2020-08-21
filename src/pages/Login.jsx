@@ -1,32 +1,33 @@
 import React, { useState } from "react";
-import { Formik, Form, Field } from "formik";
+import { Formik } from "formik";
 import * as Yup from "yup";
 import { Redirect } from "react-router-dom";
 import { useAuth } from "../context/auth";
+import LoginForm from "../components/LoginForm";
 
 const LoginSchema = Yup.object().shape({
-  login: Yup.string().required("Required"),
+  login: Yup.string().required("Login required"),
   password: Yup.string()
-    .min(8, "Min length: 8")
+    .min(8, "Password must be more than 8 characters")
     .matches(
       /(?=^.{8,}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)[0-9a-zA-Z!@#$%^&*()]*$/gm,
       "Password must at least 1 lowercase letter, 1 uppercase letter, and 1 digit."
     )
-    .required("Required"),
+    .required("Password equired"),
 });
 
 export default function Login() {
   const [isLoggedIn, setLoggedIn] = useState(false);
-  const [isError, setIsError] = useState(false);
+  const [isError, setError] = useState(false);
   const { setUser } = useAuth();
+  const [errorMessage, setErrorMessage] = useState("");
 
   const submitHandler = async (values) => {
-    try {
-      const response = await fetch(
-        `https://api.github.com/users/${values.login}`
-      );
-      const data = await response.json();
-      setLoggedIn(true);
+    const response = await fetch(
+      `https://api.github.com/users/${values.login}`
+    );
+    const data = await response.json();
+    if (response.status === 200) {
       const user = {
         login: values.login,
         password: values.password,
@@ -34,8 +35,9 @@ export default function Login() {
       };
       setUser(user);
       setLoggedIn(true);
-    } catch (error) {
-      setIsError(true);
+    } else {
+      setError(true);
+      setErrorMessage(data.message);
     }
   };
 
@@ -53,19 +55,16 @@ export default function Login() {
         validationSchema={LoginSchema}
         onSubmit={submitHandler}
       >
-        {({ errors, touched, isSubmitting }) => (
-          <Form>
-            <Field name="login" />
-            {errors.login && touched.login ? <div>{errors.login}</div> : null}
-            <Field name="password" type="password" />
-            {errors.password && touched.password ? (
-              <div>{errors.password}</div>
-            ) : null}
-            <button type="submit" disabled={isSubmitting}>
-              Submit
-            </button>
-            {isError ? "Непредвиденная ошибка" : null}
-          </Form>
+        {({ errors, touched, isSubmitting, handleSubmit }) => (
+          <LoginForm
+            handleSubmit={handleSubmit}
+            errors={errors}
+            isError={isError}
+            touched={touched}
+            isSubmitting={isSubmitting}
+            isError={isError}
+            errorMessage={errorMessage}
+          />
         )}
       </Formik>
     </div>

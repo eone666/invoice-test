@@ -1,22 +1,30 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 export default function Sidebar() {
-  const existingUser = JSON.parse(localStorage.getItem("user"));
-  const [user, setUser] = useState(existingUser);
   return (
     <header className="sidebar">
-      <div className="user">{user ? user.login : null}</div>
-      <nav>
-        <ul>
+      <nav className="sidebar__nav nav">
+        <ul className="nav__list">
           <li>
-            <Link to="/">Terminals</Link>
+            <Link className="nav__link" to="/">
+              Home
+            </Link>
           </li>
           <li>
-            <Link to="/buyers">Buyers</Link>
+            <Link className="nav__link" to="/terminals">
+              Terminals
+            </Link>
           </li>
           <li>
-            <Link to="/logout">Logout</Link>
+            <Link className="nav__link" to="/buyers">
+              Buyers
+            </Link>
+          </li>
+          <li>
+            <Link className="nav__link" to="/logout">
+              Logout
+            </Link>
           </li>
         </ul>
       </nav>
