@@ -12,12 +12,17 @@ export default function TerminalTable({ data, deleteHandler }) {
         </tr>
       </thead>
       <tbody>
-        {data.map((e, i) => (
-          <tr key={i}>
+        {data.map((e) => (
+          <tr key={e.id}>
             <th>{e.name}</th>
             <th>{e.description}</th>
             <th>
-              <Button onClick={deleteHandler} style={{ width: "auto" }}>
+              <Button
+                onClick={() => {
+                  deleteHandler(e.id);
+                }}
+                style={{ width: "auto" }}
+              >
                 Delete
               </Button>
             </th>

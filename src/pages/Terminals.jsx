@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import TerminalForm from "../components/TerminalForm";
 import TerminalTable from "../components/TerminalTable";
+import nextId from "react-id-generator";
 
 export default function Terminals() {
   if (!localStorage.getItem("terminals")) {
@@ -11,11 +12,9 @@ export default function Terminals() {
 
   const [data, setData] = useState(existingData);
 
-  const [id] = useState(data.length);
-
   const submitHandler = (values, { setSubmitting, resetForm }) => {
     const joined = data.concat({
-      id,
+      id: nextId(),
       name: values.name,
       description: values.description,
     });
@@ -25,15 +24,17 @@ export default function Terminals() {
     resetForm();
   };
 
-  const deleteHandler = (e) => {
-    console.dir(e.target);
+  const deleteHandler = (id) => {
+    const tmp = data.filter((e, i) => e.id !== id);
+    localStorage.setItem("terminals", JSON.stringify(tmp));
+    setData(tmp);
   };
 
   return (
     <div className="page terminals">
       <h1>Terminals</h1>
       <TerminalForm submitHandler={submitHandler}></TerminalForm>
-      {data ? (
+      {data.length > 0 ? (
         <TerminalTable data={data} deleteHandler={deleteHandler} />
       ) : (
         <h2>Nothing found</h2>
