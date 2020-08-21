@@ -29,7 +29,7 @@ export default function TerminalForm({ submitHandler }) {
               <TextInput name="description" placeholder="Description" />
             </div>
             <Button type="submit" disabled={isSubmitting}>
-              Добавить
+              Add
             </Button>
             <div className="terminal-form__row errors">
               {errors.name ? (
