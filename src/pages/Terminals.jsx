@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import TerminalForm from "../components/TerminalForm";
 import TerminalTable from "../components/TerminalTable";
 import nextId from "react-id-generator";
@@ -12,9 +12,21 @@ export default function Terminals() {
 
   const [data, setData] = useState(existingData);
 
+  function getRandomString(length) {
+    var randomChars =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    var result = "";
+    for (var i = 0; i < length; i++) {
+      result += randomChars.charAt(
+        Math.floor(Math.random() * randomChars.length)
+      );
+    }
+    return result;
+  }
+
   const submitHandler = (values, { setSubmitting, resetForm }) => {
     const joined = data.concat({
-      id: nextId(),
+      id: nextId(getRandomString(5)),
       name: values.name,
       description: values.description,
     });
