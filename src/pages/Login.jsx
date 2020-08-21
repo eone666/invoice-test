@@ -33,6 +33,7 @@ export default function Login() {
         avatarUrl: data.avatar_url,
       };
       setUser(user);
+      setLoggedIn(true);
     } catch (error) {
       setIsError(true);
     }
