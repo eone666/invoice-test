@@ -13,11 +13,6 @@ export default function Buyers() {
     Math.ceil(buyers.length / perPage)
   );
 
-  const setItemsOnPage = (count, start = 0) => {
-    const _data = buyers.slice(start, count);
-    setData(_data);
-  };
-
   const handleFilter = (filterQuery) => {
     if (filterQuery === "") {
       handlePageClick(currentPage);
