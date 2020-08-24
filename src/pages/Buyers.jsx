@@ -66,13 +66,14 @@ export default function Buyers() {
     setCurentPage(selectedPage);
     const slice = buyers.slice(offset, offset + perPage);
     setData(slice);
+    console.log(data);
   };
 
   const changeHandler = (e) => {
     setPerPage(Number(e.target.value));
-    const slice = buyers.slice(offset, offset + e.target.value);
+    const slice = buyers.slice(offset, offset + Number(e.target.value));
     setData(slice);
-    setPageCount(Math.ceil(buyers.length / e.target.value));
+    setPageCount(Math.ceil(buyers.length / Number(e.target.value)));
   };
 
   const paginationButtons = () => {
