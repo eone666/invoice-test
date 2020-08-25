@@ -71,7 +71,7 @@ export default function Buyers() {
 
   const changeHandler = (e) => {
     setPerPage(Number(e.target.value));
-    const slice = buyers.slice(offset, offset + Number(e.target.value));
+    const slice = buyers.slice(0, Number(e.target.value));
     setData(slice);
     setPageCount(Math.ceil(buyers.length / Number(e.target.value)));
   };
