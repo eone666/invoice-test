@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { buyers } from "../data/buyers";
 import PageNotFound from "./PageNotFound";
 
 export default function Buyer() {
+  const [buyer, setBuyer] = useState({});
   const buyerId = useParams();
-  const buyer = buyers.find((e) => String(e.id) === buyerId.buyerId);
+  useEffect(() => {
+    setBuyer(buyers.find((e) => String(e.id) === buyerId.buyerId));
+  }, [buyerId]);
   if (!buyer) {
     return <PageNotFound />;
   }

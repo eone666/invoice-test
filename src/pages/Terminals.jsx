@@ -1,44 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TerminalForm from "../components/TerminalForm";
 import TerminalTable from "../components/TerminalTable";
 
 export default function Terminals() {
-  if (!localStorage.getItem("terminals")) {
-    localStorage.setItem("terminals", JSON.stringify([]));
-  }
+  const [data, setData] = useState([]);
 
-  const existingData = JSON.parse(localStorage.getItem("terminals"));
+  useEffect(() => {
+    setData(JSON.parse(localStorage.getItem("terminals")) || []);
+  }, []);
 
-  const [data, setData] = useState(existingData);
-
-  function getRandomString(length) {
-    var randomChars =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    var result = "";
-    for (var i = 0; i < length; i++) {
-      result += randomChars.charAt(
-        Math.floor(Math.random() * randomChars.length)
-      );
-    }
-    return result;
-  }
+  useEffect(() => {
+    localStorage.setItem("terminals", JSON.stringify(data));
+  }, [data]);
 
   const submitHandler = (values, { setSubmitting, resetForm }) => {
     const joined = data.concat({
-      id: getRandomString(8),
+      id: data[data.length - 1] ? data[data.length - 1].id + 1 : 0,
       name: values.name,
       description: values.description,
     });
     setData(joined);
-    localStorage.setItem("terminals", JSON.stringify(joined));
     setSubmitting(false);
     resetForm();
   };
 
   const deleteHandler = (id) => {
-    const tmp = data.filter((e, i) => e.id !== id);
-    localStorage.setItem("terminals", JSON.stringify(tmp));
-    setData(tmp);
+    setData(data.filter((e, i) => e.id !== id));
   };
 
   return (
