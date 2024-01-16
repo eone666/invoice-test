@@ -25,38 +25,12 @@ export default function Buyers() {
   };
 
   const sortBy = (field) => {
-    let sorted;
-    switch (field) {
-      case "averageCheck":
-        sorted = data.sort((a, b) =>
-          isSortAsc
-            ? a.averageCheck - b.averageCheck
-            : b.averageCheck - a.averageCheck
-        );
-        setData(sorted);
-        setSortAsc(!isSortAsc);
-        break;
-      case "numberOfPurchases":
-        sorted = data.sort((a, b) =>
-          isSortAsc
-            ? a.numberOfPurchases - b.numberOfPurchases
-            : b.numberOfPurchases - a.numberOfPurchases
-        );
-        setData(sorted);
-        setSortAsc(!isSortAsc);
-        break;
-      case "totalRevenues":
-        sorted = data.sort((a, b) =>
-          isSortAsc
-            ? a.totalRevenues - b.totalRevenues
-            : b.totalRevenues - a.totalRevenues
-        );
-        setData(sorted);
-        setSortAsc(!isSortAsc);
-        break;
-      default:
-        break;
-    }
+    setData([...data].sort((a, b) =>
+      isSortAsc
+        ? a[field] - b[field]
+        : b[field] - a[field]
+    ));
+    setSortAsc(!isSortAsc);
   };
 
   const handlePageClick = (page) => {
